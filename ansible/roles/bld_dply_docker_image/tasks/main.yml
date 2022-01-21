@@ -1,20 +1,22 @@
 - name: Add config directory
   become: true
   file:
-    path: /docker-nginx
+    path: $PWD/docker-nginx
     state: directory
 
 - name: Add docker files
   become: true
   copy:
-    src: luxsoft/docker-nginx/
-    dest: /docker-nginx
+    src: ./
+    dest: $PWD/docker-nginx/
     mode: 644
 
 - name: Build image
   become: true
-  shell: /docker-nginx/docker build -t osymon/nginx-php:test .
+  shell: docker build -t osymon/nginx-php:test .
+  args:
+       chdir: $PWD/docker-nginx
 
 - name: Run container
   become: true
-  shell: /docker-nginx/docker run -d --rm --name nginx -p 80:80 osymon/nginx-php:test
+  shell: docker run -d --rm --name nginx -p 80:80 osymon/nginx-php:test
