@@ -8,10 +8,12 @@
 - name:  install Epel repo
   yum: name=epel-release state=present
   when: ansible_os_family == "RedHat"  and ansible_facts['distribution_major_version'] == "7"
+  become: yes
 
 - name:  Update packages
   yum: name=* state=latest update_cache=yes
   when: ansible_os_family == "RedHat"  and ansible_facts['distribution_major_version'] == "7"
+  become: yes
 
 - name:  Install packages
   yum:
@@ -24,23 +26,25 @@
       - containerd.io
     state: present
   when: ansible_os_family == "RedHat"  and ansible_facts['distribution_major_version'] == "7"
+  become: yes
 
 - name:  install Epel repo
-  dnf: name=epel-release state=present
+  dnf: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
   when: ansible_os_family == "RedHat"  and ansible_facts['distribution_major_version'] == "8"
+  become: yes
 
 - name:  Update packages
   dnf: name=* state=latest
   when: ansible_os_family == "RedHat"  and ansible_facts['distribution_major_version'] == "8"
+  become: yes
 
 - name:  Install packages
   dnf:
     name:
-      - python-pip
-      - python-setuptools
-      - python-docker
+      - python3-pip
       - docker-ce
       - docker-ce-cli
       - containerd.io
     state: present
   when: ansible_os_family == "RedHat"  and ansible_facts['distribution_major_version'] == "8"
+  become: yes
