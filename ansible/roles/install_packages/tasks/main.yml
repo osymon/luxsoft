@@ -1,0 +1,11 @@
+---
+
+- name: install to RedHat
+  include: centos.yml
+  when: ansible_os_family == "RedHat"
+
+- name: Start docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes

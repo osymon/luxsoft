@@ -1,0 +1,7 @@
+---
+- hosts: all_servers
+  become: yes
+
+  roles:
+   - install_packages
+   - bld_dply_docker_image
