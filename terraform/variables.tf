@@ -30,5 +30,5 @@ variable "cidr_blocks" {
 variable "cidr_blocks_myip" {
   description = "Please Enter AWS cidr_blocks_myip to deploy project"
   type        = list(any)
-  default     = ["77.121.11.57/32"]
+  default     = ["x.x.x.x/32"]
 }
