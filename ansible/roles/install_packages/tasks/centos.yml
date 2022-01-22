@@ -28,6 +28,10 @@
   when: ansible_os_family == "RedHat"  and ansible_facts['distribution_major_version'] == "7"
   become: yes
 
+- rpm_key:
+      state: present
+      key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
+
 - name:  install Epel repo
   dnf: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
   when: ansible_os_family == "RedHat"  and ansible_facts['distribution_major_version'] == "8"

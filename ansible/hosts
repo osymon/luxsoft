@@ -1,3 +1,2 @@
-[all_servers]
-ec2-instance ansible_host=<<ec2-instance-ip>>
-ec2-instance1 ansible_host=<<ec2-instance-ip>>
+[localhost]
+local
